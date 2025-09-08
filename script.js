@@ -12,7 +12,7 @@ const displayCategories = (categories) => {
     categoriesContainer.innerHTML += `
       <button
               onclick="loadCardsCategories(${cate.id})"
-              class="categori-btn hover:bg-[#15803D] hover:text-white text-xl font-semibold  cursor-pointer py-2 w-full rounded-full my-2"
+              class="categori-btn hover:bg-[#15803D] hover:text-white text-xl font-semibold  cursor-pointer py-2 px-2 md:w-full rounded-full my-1"
             >
              ${cate.category_name}
             </button>
@@ -47,7 +47,7 @@ const displayAllCard = (allCards) => {
     //console.log(card);
 
     cardContainer.innerHTML += `
-        <div class="card p-2 border-2 border-e-red-700 ">
+        <div class="card p-2">
               <img src=${card.image} class="h-65 rounded-lg" alt="" />
               <h1 class="text-xl font-semibold pt-2">${card.name}</h1>
               <p class="text-gray-600 py-2 truncate ">${card.description}</p>
