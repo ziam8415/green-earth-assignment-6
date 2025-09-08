@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- daisyui  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <!-- navbar  -->
+    <nav
+      class="navbar bg-[#15803D] shadow-sm flex justify-between items-center px-15 text-white py-6"
+    >
+      <div class="">Green Earth</div>
+      <div class="flex justify-between items-center gap-4">
+        <h1>About</h1>
+        <h1>Gallery</h1>
+        <h1>Plant a Tree</h1>
+      </div>
+      <button class="bg-[#FACC15] py-2 px-4 rounded-full">Plant a Tree</button>
+    </nav>
+
+    <!-- banner  -->
+    <section class="grid grid-cols-10 px-6 bg-[#CFF0DC]">
+      <img class="col-span-2" src="./assets/hero-leaf1.png" alt="" />
+      <div class="col-span-6 text-center pt-10">
+        <h1 class="text-3xl font-bold">Plant a Tree, Grow a Future</h1>
+        <p class="text-gray-600 pt-4">
+          Join our mission to plant 1 million trees and make the Earth greener
+          for future generations.
+        </p>
+        <button class="bg-[#FACC15] py-2 px-4 rounded-full mt-3">
+          Get Involved
+        </button>
+      </div>
+      <img class="col-span-2" src="./assets/hero-leaf2.png" alt="" />
+    </section>
+
+    <!-- choose trees  -->
+    <section class="border-2 border-red-500">
+      <h1 class="text-center pt-10 pb-5">Choose Your Trees</h1>
+      <div class="grid grid-cols-12 gap-3 w-11/12 mx-auto">
+        <div class="col-span-2 border-2 border-black-500">
+          <h1>Categories</h1>
+          <div id="categori-container">
+            <button
+              onclick="loadAllCards()"
+              class="categori-btn hover:bg-[#15803D] hover:text-white text-xl font-semibold cursor-pointer py-2 w-full rounded-full my-1"
+            >
+              All Trees
+            </button>
+          </div>
+        </div>
+        <div class="col-span-8 border-2 border-red-500">
+          <div id="card-container" class="grid grid-cols-3 gap-2">
+            <!-- card  -->
+            <!-- <div class="card p-4">
+              <img src="./assets/hero-leaf1.png" alt="" />
+              <h1 class="text-xl font-semibold pt-4">tree</h1>
+              <p class="text-gray-600 py-4">discription</p>
+              <div class="flex justify-between">
+                <p class="text-[#15803D]">frut tree</p>
+                <p>500</p>
+              </div>
+              <button class="bg-[#15803D] py-2 px-4 rounded-full my-4">
+                Get Involved
+              </button>
+            </div> -->
+          </div>
+        </div>
+        <div class="col-span-2 border-2 border-black-500"></div>
+      </div>
+    </section>
+    <script src="./script.js"></script>
+  </body>
+</html>
