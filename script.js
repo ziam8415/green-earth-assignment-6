@@ -6,7 +6,7 @@ const loadCategories = () => {
 loadCategories();
 
 const displayCategories = (categories) => {
-  console.log(categories);
+  //console.log(categories);
   categories.forEach((cate) => {
     const categoriesContainer = document.getElementById("categori-container");
     categoriesContainer.innerHTML += `
@@ -44,18 +44,18 @@ const displayAllCard = (allCards) => {
   const cardContainer = document.getElementById("card-container");
   cardContainer.innerHTML = "";
   allCards.forEach((card) => {
-    //console.log(card);
-
+    let name = card.name;
+    //console.log(card.id);
     cardContainer.innerHTML += `
         <div class="card p-2">
               <img src=${card.image} class="h-65 rounded-lg" alt="" />
-              <h1 class="text-xl font-semibold pt-2">${card.name}</h1>
+              <h1 class="text-xl font-semibold pt-2">${name}</h1>
               <p class="text-gray-600 py-2 truncate ">${card.description}</p>
               <div class="flex justify-between">
-                <p class="text-[#15803D]"> ${card.category} </p>
+                <p class="text-[#15803D] bg-[#DCFCE7] py-1 px-3"> ${card.category} </p>
                 <p> ${card.price} </p>
               </div>
-              <button class="bg-[#15803D] py-2 px-4 rounded-full mt-2 mb-2">
+              <button onclick="cartAdd(${card.id}, '${name}' , ${card.price})" class="bg-[#15803D] py-2 px-4 rounded-full mt-2 mb-2">
                 Add to Cart
               </button>
             </div>
@@ -63,8 +63,37 @@ const displayAllCard = (allCards) => {
   });
 };
 
+const arr = [];
+// const getCartDetails = (id, a, price) => {
+//   //console.log(a, price);
+
+//   const obj = {
+//     id,
+//     treeName: a,
+//     price,
+//   };
+//   arr.push(obj);
+//   //console.log(arr);
+//   cartAdd(arr);
+// };
+
+//add cart
+let cardContainer = document.getElementById("cart-container");
+console.log(cardContainer);
+const cartAdd = (id, a, price) => {
+  //console.log(arr);
+  cardContainer.innerHTML += `
+    <div class="flex justify-between items-center">
+              <div class="">
+                <p class="font-semibold">${a}</p>
+                <p class="text-gray-500">${price} <i class="fa-solid fa-xmark text-xs"></i> 1</p>
+              </div>
+              <div class="text-gray-500"><i class="fa-solid fa-xmark "></i></div>
+            </div>`;
+};
+
 const loadCardsCategories = (id) => {
-  console.log(id);
+  //console.log(id);
   fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     .then((res) => res.json())
     .then((json) => displayAllCard(json.plants));
