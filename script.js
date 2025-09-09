@@ -20,6 +20,17 @@ const displayCategories = (categories) => {
   });
 };
 
+//spinner
+const manageSpinner = (status) => {
+  if (status == true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("choose-trees").classList.add("hidden");
+  } else {
+    document.getElementById("spinner").classList.add("hidden");
+    document.getElementById("choose-trees").classList.remove("hidden");
+  }
+};
+
 // categoriBtnBgStyle
 document.getElementById("categori-container").addEventListener("click", (e) => {
   const btns = document.getElementsByClassName("categori-btn");
@@ -33,12 +44,41 @@ document.getElementById("categori-container").addEventListener("click", (e) => {
 });
 
 const loadAllCards = () => {
+  manageSpinner(true);
   fetch("https://openapi.programming-hero.com/api/plants")
     .then((res) => res.json())
     .then((json) => displayAllCard(json.plants));
 };
 
 loadAllCards();
+
+const openModel = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+    .then((res) => res.json())
+    .then((json) => displayModal(json.plants));
+};
+
+const displayModal = (details) => {
+  console.log(details);
+  let modalBox = document.getElementById("modal-detalis");
+  modalBox.innerHTML = `
+          <div class="flex justify-between">
+            <h3 class="text-lg font-bold">${details.name}</h3>
+            <h4 class="font-semibold">${details.category}</h4>
+            <p class="font-semibold ">Price <span class="text-red-500">${details.price}</span></p>
+          </div>
+          <img class="h-70 w-8/12 py-3 mx-auto" src="${details.image}" />
+          <p class="py-4">
+            ${details.description}
+          </p>
+          <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>`;
+  document.getElementById("my_modal_1").showModal();
+};
 
 const displayAllCard = (allCards) => {
   const cardContainer = document.getElementById("card-container");
@@ -49,7 +89,7 @@ const displayAllCard = (allCards) => {
     cardContainer.innerHTML += `
         <div class="card p-2 bg-white">
               <img src=${card.image} class="h-65 rounded-lg" alt="" />
-              <h1 class="text-xl font-semibold pt-2">${name}</h1>
+              <h1 onclick="openModel(${card.id})" class="text-xl font-semibold pt-2">${name}</h1>
               <p class="text-gray-600 py-2 truncate ">${card.description}</p>
               <div class="flex justify-between">
                 <p class="text-[#15803D] bg-[#DCFCE7] rounded-lg py-1 px-3"> ${card.category} </p>
@@ -61,6 +101,7 @@ const displayAllCard = (allCards) => {
             </div>
        `;
   });
+  manageSpinner(false);
 };
 
 let arr = [];
@@ -118,6 +159,7 @@ const removeCart = (id) => {
 
 const loadCardsCategories = (id) => {
   //console.log(id);
+  manageSpinner(true);
   fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     .then((res) => res.json())
     .then((json) => displayAllCard(json.plants));
