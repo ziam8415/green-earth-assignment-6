@@ -89,7 +89,7 @@ const displayAllCard = (allCards) => {
     cardContainer.innerHTML += `
         <div class="card p-2 bg-white">
               <img src=${card.image} class="h-65 rounded-lg" alt="" />
-              <h1 onclick="openModel(${card.id})" class="text-xl font-semibold pt-2">${name}</h1>
+              <h1 onclick="openModel(${card.id})" class="text-xl cursor-pointer font-semibold pt-2">${name}</h1>
               <p class="text-gray-600 py-2 truncate ">${card.description}</p>
               <div class="flex justify-between">
                 <p class="text-[#15803D] bg-[#DCFCE7] rounded-lg py-1 px-3"> ${card.category} </p>
