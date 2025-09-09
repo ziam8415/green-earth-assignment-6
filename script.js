@@ -47,7 +47,7 @@ const displayAllCard = (allCards) => {
     let name = card.name;
     //console.log(card.id);
     cardContainer.innerHTML += `
-        <div class="card p-2">
+        <div class="card p-2 bg-white">
               <img src=${card.image} class="h-65 rounded-lg" alt="" />
               <h1 class="text-xl font-semibold pt-2">${name}</h1>
               <p class="text-gray-600 py-2 truncate ">${card.description}</p>
@@ -55,7 +55,7 @@ const displayAllCard = (allCards) => {
                 <p class="text-[#15803D] bg-[#DCFCE7] rounded-lg py-1 px-3"> ${card.category} </p>
                 <p> ${card.price} </p>
               </div>
-              <button onclick="getCartDetails(${card.id}, '${name}' , ${card.price})" class="bg-[#15803D] py-2 px-4 rounded-full mt-2 mb-2">
+              <button onclick="getCartDetails(${card.id}, '${name}' , ${card.price})" class="cursor-pointer bg-[#15803D] py-2 px-4 rounded-full mt-2 mb-2">
                 Add to Cart
               </button>
             </div>
@@ -87,12 +87,12 @@ const cartAdd = (arr) => {
     //console.log(a);
 
     cartContainer.innerHTML += `
-    <div id="${a.id}" class="flex justify-between items-center">
+    <div id="${a.id}" class="flex justify-between items-center bg-[#F0FDF4] rounded-lg mt-2 py-1 px-3">
               <div class="">
                 <p class="font-semibold">${a.treeName}</p>
                 <p class="text-gray-500">${a.price} <i class="fa-solid fa-xmark text-xs"></i> 1</p>
               </div>
-              <div onclick="removeCart(${a.id})" class="text-gray-500"><i class="fa-solid fa-xmark "></i></div>
+              <div onclick="removeCart(${a.id})" class="text-gray-500 cursor-pointer hover:text-red-900"><i class="fa-solid fa-xmark "></i></div>
             </div>`;
   });
 };
