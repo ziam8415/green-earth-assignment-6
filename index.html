@@ -66,12 +66,10 @@
       </div>
     </dialog>
 
-    <section id="spinner" class="flex justify-center items-center py-5 hidden">
-      <span class="loading loading-dots loading-xl"></span>
-    </section>
+    
 
     <!-- choose trees  -->
-    <section id="choose-trees" class="pb-30 bg-[#F0FDF4]  hidden">
+    <section  class="pb-30 bg-[#F0FDF4]">
       <h1 class="pb-10 text-center text-2xl font-bold pt-10 pb-5 bg-[#F0FDF4]">
         Choose Your Trees
       </h1>
@@ -91,8 +89,13 @@
               </button>
             </div>
           </div>
-          <div  class="col-span-8">
-            <div
+           
+          <div class="col-span-8 ">
+            <section id="spinner" class="flex justify-center items-center py-5 hidden">
+            <span class="loading loading-dots loading-xl"></span>
+           </section>
+           <div id="choose-trees" class="hidden">
+             <div
               id="card-container"
               class="md:grid space-y-2 grid-cols-3 gap-2"
             >
@@ -110,6 +113,7 @@
               </button>
             </div> -->
             </div>
+           </div>
           </div>
           <div class="col-span-2 p-2 bg-white">
             <h1 class="text-2xl font-bold my-3">Your Cart</h1>
@@ -214,3 +218,5 @@
     <script src="./script.js"></script>
   </body>
 </html>
+
+
