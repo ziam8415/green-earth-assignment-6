@@ -52,10 +52,10 @@ const displayAllCard = (allCards) => {
               <h1 class="text-xl font-semibold pt-2">${name}</h1>
               <p class="text-gray-600 py-2 truncate ">${card.description}</p>
               <div class="flex justify-between">
-                <p class="text-[#15803D] bg-[#DCFCE7] py-1 px-3"> ${card.category} </p>
+                <p class="text-[#15803D] bg-[#DCFCE7] rounded-lg py-1 px-3"> ${card.category} </p>
                 <p> ${card.price} </p>
               </div>
-              <button onclick="cartAdd(${card.id}, '${name}' , ${card.price})" class="bg-[#15803D] py-2 px-4 rounded-full mt-2 mb-2">
+              <button onclick="getCartDetails(${card.id}, '${name}' , ${card.price})" class="bg-[#15803D] py-2 px-4 rounded-full mt-2 mb-2">
                 Add to Cart
               </button>
             </div>
@@ -63,33 +63,57 @@ const displayAllCard = (allCards) => {
   });
 };
 
-const arr = [];
-// const getCartDetails = (id, a, price) => {
-//   //console.log(a, price);
+let arr = [];
+const getCartDetails = (id, a, price) => {
+  const obj = {
+    id,
+    treeName: a,
+    price,
+  };
+  arr.push(obj);
+  //console.log(arr);
 
-//   const obj = {
-//     id,
-//     treeName: a,
-//     price,
-//   };
-//   arr.push(obj);
-//   //console.log(arr);
-//   cartAdd(arr);
-// };
+  cartAdd(arr);
+  totalCount(arr);
+  return arr;
+};
 
 //add cart
-let cardContainer = document.getElementById("cart-container");
-console.log(cardContainer);
-const cartAdd = (id, a, price) => {
-  //console.log(arr);
-  cardContainer.innerHTML += `
-    <div class="flex justify-between items-center">
+let cartContainer = document.getElementById("cart-container");
+//console.log(cartContainer);
+const cartAdd = (arr) => {
+  cartContainer.innerHTML = "";
+  arr.forEach((a) => {
+    //console.log(a);
+
+    cartContainer.innerHTML += `
+    <div id="${a.id}" class="flex justify-between items-center">
               <div class="">
-                <p class="font-semibold">${a}</p>
-                <p class="text-gray-500">${price} <i class="fa-solid fa-xmark text-xs"></i> 1</p>
+                <p class="font-semibold">${a.treeName}</p>
+                <p class="text-gray-500">${a.price} <i class="fa-solid fa-xmark text-xs"></i> 1</p>
               </div>
-              <div class="text-gray-500"><i class="fa-solid fa-xmark "></i></div>
+              <div onclick="removeCart(${a.id})" class="text-gray-500"><i class="fa-solid fa-xmark "></i></div>
             </div>`;
+  });
+};
+
+// totalcount
+
+const totalCount = (arr) => {
+  let totalPrice = 0;
+  arr.forEach((a) => {
+    totalPrice += a.price;
+  });
+  document.getElementById("total-price").innerText = totalPrice;
+};
+
+//removeCart
+const removeCart = (id) => {
+  const filteredArr = arr.filter((a) => a.id !== id);
+  //console.log(filteredArr);
+  arr = filteredArr;
+  cartAdd(arr);
+  totalCount(arr);
 };
 
 const loadCardsCategories = (id) => {
